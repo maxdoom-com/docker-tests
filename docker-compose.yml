@@ -1,0 +1,95 @@
+version: "3"
+services:
+    database:
+        build: ../docker-compose-mysql10.5
+        env_file: .env
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./mysql/:/var/lib/mysql
+            - ./etc/mysql/custom/mariadb.conf:/etc/my.cnf.d/custom-mariadb.conf
+
+    app56:
+        build: ../docker-compose-php5.6
+        env_file: .env
+        ports:
+            - "8056:80"
+            - "8456:443"
+        volumes:
+            - ./html/56/:/srv/index/
+            - ./etc/56/custom/php.ini:/etc/php56/conf.d/custom-php.ini
+            - ./etc/56/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/56/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    app74:
+        build: ../docker-compose-php7.4
+        env_file: .env
+        ports:
+            - "8074:80"
+            - "8474:443"
+        volumes:
+            - ./html/74/:/srv/index/
+            - ./etc/74/custom/php.ini:/etc/php74/conf.d/custom-php.ini
+            - ./etc/74/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/74/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    app80:
+        build: ../docker-compose-php8.0
+        env_file: .env
+        ports:
+            - "8080:80"
+            - "8480:443"
+        volumes:
+            - ./html/80/:/srv/index/
+            - ./etc/80/custom/php.ini:/etc/php80/conf.d/custom-php.ini
+            - ./etc/80/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/80/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    app81:
+        build: ../docker-compose-php8.1
+        env_file: .env
+        ports:
+            - "8081:80"
+            - "8481:443"
+        volumes:
+            - ./html/81/:/srv/index/
+            - ./etc/81/custom/php.ini:/etc/php81/conf.d/custom-php.ini
+            - ./etc/81/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/81/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    app82:
+        build: ../docker-compose-php8.2
+        env_file: .env
+        ports:
+            - "8082:80"
+            - "8482:443"
+        volumes:
+            - ./html/82/:/srv/index/
+            - ./etc/82/custom/php.ini:/etc/php82/conf.d/custom-php.ini
+            - ./etc/82/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/82/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    app83:
+        build: ../docker-compose-php8.3
+        env_file: .env
+        ports:
+            - "8083:80"
+            - "8483:443"
+        volumes:
+            - ./html/83/:/srv/index/
+            - ./etc/83/custom/php.ini:/etc/php83/conf.d/custom-php.ini
+            - ./etc/83/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/83/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    main:
+        build: ../docker-compose-php8.0
+        env_file: .env
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./html/main/:/srv/index/
+            - ./etc/main/custom/php.ini:/etc/php80/conf.d/custom-php.ini
+            - ./etc/main/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/main/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+

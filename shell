@@ -1,0 +1,12 @@
+#!/bin/sh
+
+ITEMS=`docker ps --format '{{.Names}} {{.Image}} '`
+CONTAINER=$(whiptail --menu 'select container' 18 70 10 $ITEMS 3>&1 1>&2 2>&3)
+
+#CONTAINER=$(basename $(pwd))
+
+if [ $# -eq 0 ]; then
+    docker exec -it ${CONTAINER} bash -c 'su you'
+else
+    docker exec -it ${CONTAINER} "$@"
+fi
