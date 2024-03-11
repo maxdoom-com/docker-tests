@@ -17,7 +17,7 @@ services:
             - "8456:443"
         volumes:
             - ./html/56/:/srv/index/
-            - ./etc/56/custom/php.ini:/etc/php56/conf.d/custom-php.ini
+            - ./etc/56/custom/php.ini:/etc/php/conf.d/custom-php.ini
             - ./etc/56/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
             - ./etc/56/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
 
@@ -29,7 +29,7 @@ services:
             - "8474:443"
         volumes:
             - ./html/74/:/srv/index/
-            - ./etc/74/custom/php.ini:/etc/php74/conf.d/custom-php.ini
+            - ./etc/74/custom/php.ini:/etc/php7/conf.d/custom-php.ini
             - ./etc/74/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
             - ./etc/74/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
 
@@ -41,7 +41,7 @@ services:
             - "8480:443"
         volumes:
             - ./html/80/:/srv/index/
-            - ./etc/80/custom/php.ini:/etc/php80/conf.d/custom-php.ini
+            - ./etc/80/custom/php.ini:/etc/php8/conf.d/custom-php.ini
             - ./etc/80/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
             - ./etc/80/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
 
