@@ -9,12 +9,20 @@ services:
             - ./mysql/:/var/lib/mysql
             - ./etc/mysql/custom/mariadb.conf:/etc/my.cnf.d/custom-mariadb.conf
 
+    openldap:
+        build: ../docker-compose-openldap
+        env_file: .env
+        volumes:
+            - ./ldap/config/:/etc/openldap/
+            - ./ldap/data/:/var/lib/openldap/openldap-data/
+            - ./ldap/import/:/var/lib/openldap/import/
+
+
+
+
     app56:
         build: ../docker-compose-php5.6
         env_file: .env
-        ports:
-            - "8056:80"
-            - "8456:443"
         volumes:
             - ./html/56/:/srv/index/
             - ./etc/56/custom/php.ini:/etc/php/conf.d/custom-php.ini
@@ -24,9 +32,6 @@ services:
     app74:
         build: ../docker-compose-php7.4
         env_file: .env
-        ports:
-            - "8074:80"
-            - "8474:443"
         volumes:
             - ./html/74/:/srv/index/
             - ./etc/74/custom/php.ini:/etc/php7/conf.d/custom-php.ini
@@ -36,9 +41,6 @@ services:
     app80:
         build: ../docker-compose-php8.0
         env_file: .env
-        ports:
-            - "8080:80"
-            - "8480:443"
         volumes:
             - ./html/80/:/srv/index/
             - ./etc/80/custom/php.ini:/etc/php8/conf.d/custom-php.ini
@@ -48,9 +50,6 @@ services:
     app81:
         build: ../docker-compose-php8.1
         env_file: .env
-        ports:
-            - "8081:80"
-            - "8481:443"
         volumes:
             - ./html/81/:/srv/index/
             - ./etc/81/custom/php.ini:/etc/php81/conf.d/custom-php.ini
@@ -60,9 +59,6 @@ services:
     app82:
         build: ../docker-compose-php8.2
         env_file: .env
-        ports:
-            - "8082:80"
-            - "8482:443"
         volumes:
             - ./html/82/:/srv/index/
             - ./etc/82/custom/php.ini:/etc/php82/conf.d/custom-php.ini
@@ -72,14 +68,22 @@ services:
     app83:
         build: ../docker-compose-php8.3
         env_file: .env
-        ports:
-            - "8083:80"
-            - "8483:443"
         volumes:
             - ./html/83/:/srv/index/
             - ./etc/83/custom/php.ini:/etc/php83/conf.d/custom-php.ini
             - ./etc/83/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
             - ./etc/83/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+    app-ldap:
+        build: ../docker-compose-php8.0
+        env_file: .env
+        volumes:
+            - ./html/openldap/:/srv/index/
+            - ./etc/openldap/custom/php.ini:/etc/php8/conf.d/custom-php.ini
+            - ./etc/openldap/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
+            - ./etc/openldap/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
+
+
 
     main:
         build: ../docker-compose-php8.0
