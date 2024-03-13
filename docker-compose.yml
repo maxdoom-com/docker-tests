@@ -3,8 +3,6 @@ services:
     database:
         build: ../docker-compose-mysql10.5
         env_file: .env
-        ports:
-            - "3306:3306"
         volumes:
             - ./mysql/:/var/lib/mysql
             - ./etc/mysql/custom/mariadb.conf:/etc/my.cnf.d/custom-mariadb.conf
