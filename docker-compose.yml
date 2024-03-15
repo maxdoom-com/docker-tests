@@ -11,7 +11,8 @@ services:
         build: ../docker-compose-openldap
         env_file: .env
         volumes:
-            - ./ldap/config/:/etc/openldap/
+            - ./ldap/config/slapd.conf:/etc/openldap/slapd.conf
+            - ./ldap/config/slapd.ldif:/etc/openldap/slapd.ldif
             - ./ldap/data/:/var/lib/openldap/openldap-data/
             - ./ldap/import/:/var/lib/openldap/import/
 
@@ -73,11 +74,11 @@ services:
             - ./etc/83/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
 
     app-ldap:
-        build: ../docker-compose-php8.0
+        build: ../docker-compose-php8.1
         env_file: .env
         volumes:
             - ./html/openldap/:/srv/index/
-            - ./etc/openldap/custom/php.ini:/etc/php8/conf.d/custom-php.ini
+            - ./etc/openldap/custom/php.ini:/etc/php81/conf.d/custom-php.ini
             - ./etc/openldap/custom/apache.conf:/etc/apache2/conf.d/custom-apache.conf
             - ./etc/openldap/apache2/conf.d/vhosts.d:/etc/apache2/conf.d/vhosts.d
 
